@@ -247,7 +247,8 @@ func NewAPIClient(opts *ClientOpts) (APIBaseClient, error) {
 	if len(schemasURLs) == 0 {
 		return result, errors.New("Failed to find schema at [" + opts.URL + "]")
 	}
-
+        t := strings.Replace(schemasURLs, "meta", "v3", -1)
+	schemasURLs = t
 	if schemasURLs != opts.URL {
 		req, err = http.NewRequest("GET", schemasURLs, nil)
 		if err != nil {
